@@ -169,16 +169,6 @@ Implementation:
 
 Show three spectrograms side by side: the original carrier, the stego output (which should look essentially identical), and the isolated S channel (which reveals the image). Also verify the mono cancellation property explicitly by summing L + R and showing the image disappears.
 
-### 3.3 Chaotic STFT/DWT Embedding (PMC11436861)
-
-The more rigorous version: instead of synthesising a new audio channel, inject the image into the STFT coefficients of an existing carrier.
-- Encrypt the image using a logistic chaotic map to scramble pixel values before embedding (the map's parameter and initial value are the shared key - without them, extracted data is visually meaningless noise)
-- Compute the STFT of the carrier audio
-- Replace the high-frequency STFT coefficients with the encrypted image data, scaled to stay below a perceptibility threshold
-- Reconstruct via inverse STFT
-
-Measure PSNR of the carrier before and after; compare to the 91.2 dB figure reported in the paper. Reconstruct the image at the receiver and measure pixel-level accuracy.
-
 ---
 
 ## Part 4 - Echo Hiding
